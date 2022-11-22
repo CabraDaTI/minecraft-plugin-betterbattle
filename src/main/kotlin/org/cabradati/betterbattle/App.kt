@@ -2,6 +2,7 @@ package org.cabradati.betterbattle
 
 import org.bukkit.plugin.java.JavaPlugin
 import org.cabradati.betterbattle.sistemas.arrowhitkill.ArrowHitKillContainer
+import org.cabradati.betterbattle.sistemas.capacetedrop.CapaceteDropContainer
 
 class App : JavaPlugin() {
 
@@ -25,13 +26,17 @@ class App : JavaPlugin() {
         )
 
         val arrowHitKillContainer = ArrowHitKillContainer(diContainer)
+        val capaceteDropContainer = CapaceteDropContainer(diContainer)
+
         arrowHitKillContainer.registerConfig()
+        capaceteDropContainer.registerConfig()
 
         saveConfig()
 
         if (config.getBoolean(ATIVAR_PLUGIN)) {
 
             arrowHitKillContainer.registerEvents()
+            capaceteDropContainer.registerEvents()
 
         } else {
             logger.info("plugin - plugin está desabilitado, nenhum evento será registrado")
