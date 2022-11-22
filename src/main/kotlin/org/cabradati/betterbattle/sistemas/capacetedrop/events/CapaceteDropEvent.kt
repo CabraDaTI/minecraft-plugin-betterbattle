@@ -17,7 +17,7 @@ class CapaceteDropEvent(private val diContainer: DIContainer) : Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     fun onCapaceteDropEvent(event: EntityDamageByEntityEvent) {
 
-        if (event.damager !is Player && event.entity !is Player) return
+        if (!(event.damager is Player && event.entity is Player)) return
         if ((event.entity as Player).equipment.helmet == null) return
 
         val chance = diContainer.config.getInt(CapaceteDropConsts.CHANCE)
