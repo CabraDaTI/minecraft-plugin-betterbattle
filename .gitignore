@@ -40,3 +40,16 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Minecraft server ###
+server/cache
+server/libraries
+server/logs
+server/plugins
+server/versions
+server/world
+server/world_nether
+server/world_the_end
+server/banned-ips.json
+server/banned-players.json
+server/whitelist.json
