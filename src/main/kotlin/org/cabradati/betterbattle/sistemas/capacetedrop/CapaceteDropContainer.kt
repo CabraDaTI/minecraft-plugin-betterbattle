@@ -2,10 +2,11 @@ package org.cabradati.betterbattle.sistemas.capacetedrop
 
 import org.cabradati.betterbattle.DIContainer
 import org.cabradati.betterbattle.sistemas.capacetedrop.events.CapaceteDropEvent
+import org.cabradati.betterbattle.sistemas.utils.SistemaContainer
 
-class CapaceteDropContainer(private val diContainer: DIContainer) {
+class CapaceteDropContainer(private val diContainer: DIContainer) : SistemaContainer {
 
-    fun registerConfig() {
+    override fun registerConfig() {
 
         val config = diContainer.config
         val plugin = diContainer.plugin
@@ -18,7 +19,7 @@ class CapaceteDropContainer(private val diContainer: DIContainer) {
 
     }
 
-    fun registerEvents() {
+    override fun registerEvents() {
 
         val config = diContainer.config
         val plugin = diContainer.plugin
@@ -36,6 +37,9 @@ class CapaceteDropContainer(private val diContainer: DIContainer) {
             diContainer.log("sistema - capacete drop - eventos estão desabilitados")
         }
 
+    }
+
+    override fun registerSchedulers() {
     }
 
 }

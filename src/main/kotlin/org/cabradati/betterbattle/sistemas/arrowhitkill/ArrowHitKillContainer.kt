@@ -2,10 +2,11 @@ package org.cabradati.betterbattle.sistemas.arrowhitkill
 
 import org.cabradati.betterbattle.DIContainer
 import org.cabradati.betterbattle.sistemas.arrowhitkill.events.ArrowHitKillEvent
+import org.cabradati.betterbattle.sistemas.utils.SistemaContainer
 
-class ArrowHitKillContainer(private val diContainer: DIContainer) {
+class ArrowHitKillContainer(private val diContainer: DIContainer) : SistemaContainer {
 
-    fun registerConfig() {
+    override fun registerConfig() {
 
         val config = diContainer.config
         val plugin = diContainer.plugin
@@ -19,7 +20,7 @@ class ArrowHitKillContainer(private val diContainer: DIContainer) {
 
     }
 
-    fun registerEvents() {
+    override fun registerEvents() {
 
         val config = diContainer.config
         val plugin = diContainer.plugin
@@ -37,6 +38,9 @@ class ArrowHitKillContainer(private val diContainer: DIContainer) {
             diContainer.log("sistema - arrow hit kill - eventos estão desabilitados")
         }
 
+    }
+
+    override fun registerSchedulers() {
     }
 
 }
