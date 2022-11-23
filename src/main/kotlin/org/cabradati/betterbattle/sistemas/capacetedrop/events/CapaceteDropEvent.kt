@@ -14,26 +14,23 @@ import kotlin.random.Random
 
 class CapaceteDropEvent(private val diContainer: DIContainer) : Listener {
 
+    private val parametroChance = diContainer.config.getInt(CapaceteDropConsts.CHANCE)
+
     @EventHandler(priority = EventPriority.NORMAL)
     fun onCapaceteDropEvent(event: EntityDamageByEntityEvent) {
 
         if (!(event.damager is Player && event.entity is Player)) return
         if ((event.entity as Player).equipment.helmet == null) return
 
-        val chance = diContainer.config.getInt(CapaceteDropConsts.CHANCE)
-        val probabilidadeDeOcorrer = Random.nextInt(1,100) <= chance
-
-        diContainer.debug("chance: $chance, resultado: $probabilidadeDeOcorrer")
+        val probabilidadeDeOcorrer = Random.nextInt(1, 100) <= parametroChance
+        val vitima = event.entity as Player
 
         if (probabilidadeDeOcorrer) {
 
-            val player = event.entity as Player
-            val capacete = player.equipment.helmet
-
-            player.equipment.helmet = ItemStack(Material.AIR)
+            vitima.equipment.helmet = ItemStack(Material.AIR)
             diContainer.server
-                .getWorld(player.location.world.uid)
-                ?.dropItem(player.location, capacete)
+                .getWorld(vitima.location.world.uid)
+                ?.dropItem(vitima.location, vitima.equipment.helmet)
 
         }
 

@@ -6,6 +6,8 @@ import org.cabradati.betterbattle.sistemas.utils.SistemaContainer
 
 class ArrowHitKillContainer(private val diContainer: DIContainer) : SistemaContainer {
 
+    private val parametroAtivarSistema = diContainer.config.getBoolean(ArrowHitKillConsts.ATIVAR_SISTEMA)
+
     override fun registerConfig() {
 
         val config = diContainer.config
@@ -22,11 +24,10 @@ class ArrowHitKillContainer(private val diContainer: DIContainer) : SistemaConta
 
     override fun registerEvents() {
 
-        val config = diContainer.config
         val plugin = diContainer.plugin
         val server = diContainer.server
 
-        if (config.getBoolean(ArrowHitKillConsts.ATIVAR_SISTEMA)) {
+        if (parametroAtivarSistema) {
 
             diContainer.log("sistema - arrow hit kill - registrando eventos")
             server.pluginManager.registerEvents(
@@ -41,6 +42,7 @@ class ArrowHitKillContainer(private val diContainer: DIContainer) : SistemaConta
     }
 
     override fun registerSchedulers() {
+        return
     }
 
 }
