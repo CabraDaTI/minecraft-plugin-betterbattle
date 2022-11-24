@@ -3,6 +3,7 @@ package org.cabradati.betterbattle
 import org.bukkit.plugin.java.JavaPlugin
 import org.cabradati.betterbattle.sistemas.arrowhitkill.ArrowHitKillContainer
 import org.cabradati.betterbattle.sistemas.capacetedrop.CapaceteDropContainer
+import org.cabradati.betterbattle.sistemas.derrubardamontaria.DerrubarDaMontariaContainer
 import org.cabradati.betterbattle.sistemas.nocaute.NocauteContainer
 import org.cabradati.betterbattle.sistemas.utils.SistemaContainer
 
@@ -30,7 +31,8 @@ class App : JavaPlugin() {
         val listaContainer: List<SistemaContainer> = listOf(
             ArrowHitKillContainer(diContainer),
             CapaceteDropContainer(diContainer),
-            NocauteContainer(diContainer)
+            NocauteContainer(diContainer),
+            DerrubarDaMontariaContainer(diContainer)
         )
 
         listaContainer.forEach { config ->

@@ -6,6 +6,8 @@ import org.cabradati.betterbattle.sistemas.utils.SistemaContainer
 
 class CapaceteDropContainer(private val diContainer: DIContainer) : SistemaContainer {
 
+    private val parametroAtivarSistema = diContainer.config.getBoolean(CapaceteDropConsts.ATIVAR_SISTEMA)
+
     override fun registerConfig() {
 
         val config = diContainer.config
@@ -21,11 +23,10 @@ class CapaceteDropContainer(private val diContainer: DIContainer) : SistemaConta
 
     override fun registerEvents() {
 
-        val config = diContainer.config
         val plugin = diContainer.plugin
         val server = diContainer.server
 
-        if (config.getBoolean(CapaceteDropConsts.ATIVAR_SISTEMA)) {
+        if (parametroAtivarSistema) {
 
             diContainer.log("sistema - capacete drop - registrando eventos")
             server.pluginManager.registerEvents(
@@ -40,6 +41,7 @@ class CapaceteDropContainer(private val diContainer: DIContainer) : SistemaConta
     }
 
     override fun registerSchedulers() {
+        return
     }
 
 }

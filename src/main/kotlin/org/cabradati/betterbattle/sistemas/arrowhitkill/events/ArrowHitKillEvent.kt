@@ -9,15 +9,16 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.cabradati.betterbattle.DIContainer
 import org.cabradati.betterbattle.sistemas.arrowhitkill.ArrowHitKillConsts
 import org.cabradati.betterbattle.sistemas.arrowhitkill.utils.DistanceCalculatorUtil
+import org.cabradati.betterbattle.sistemas.utils.SistemaEvent
 
 
-class ArrowHitKillEvent(diContainer: DIContainer) : Listener {
+class ArrowHitKillEvent(diContainer: DIContainer) : Listener, SistemaEvent<EntityDamageByEntityEvent> {
 
     private val parametroDistancia = diContainer.config.getInt(ArrowHitKillConsts.DISTANCE)
     private val parametroDistancePelaMetade = diContainer.config.getBoolean(ArrowHitKillConsts.DANO_PELA_METADE)
 
     @EventHandler(priority = EventPriority.NORMAL)
-    fun onArrowHitKill(event: EntityDamageByEntityEvent) {
+    override fun on(event: EntityDamageByEntityEvent) {
         if (!(event.damager is Arrow && event.entity is Player)) return
 
         val flecha = event.damager as Arrow
