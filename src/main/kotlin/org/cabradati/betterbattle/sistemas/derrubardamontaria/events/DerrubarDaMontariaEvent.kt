@@ -16,7 +16,7 @@ class DerrubarDaMontariaEvent(
 
     private val parametroChance = diContainer.config.getInt(DerrubarDaMontariaConsts.CHANCE)
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler(priority = EventPriority.LOW)
     override fun on(event: EntityDamageByEntityEvent) {
 
         if (!(event.damager is Player && event.entity is Player)) return
