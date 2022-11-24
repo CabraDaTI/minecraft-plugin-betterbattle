@@ -16,10 +16,4 @@ data class DIContainer(
         logger.info(mensagem)
     }
 
-    fun debug(mensagem: String) {
-        if (config.getBoolean(App.ATIVAR_DEBUG)) {
-            logger.info(mensagem)
-        }
-    }
-
 }
