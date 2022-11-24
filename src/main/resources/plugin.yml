@@ -1,6 +1,6 @@
 author: ericklemos
 name: BetterBattle
-version: 1.4
+version: 10.0
 main: org.cabradati.betterbattle.App
 api-version: 1.19
 load: STARTUP

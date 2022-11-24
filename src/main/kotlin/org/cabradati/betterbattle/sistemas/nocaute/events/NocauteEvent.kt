@@ -7,26 +7,24 @@ import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.cabradati.betterbattle.DIContainer
 import org.cabradati.betterbattle.sistemas.nocaute.NocauteConsts
+import org.cabradati.betterbattle.sistemas.utils.SistemaEvent
 import kotlin.random.Random
 
-class NocauteEvent(private val diContainer: DIContainer): Listener {
+class NocauteEvent(
+    diContainer: DIContainer
+) : Listener, SistemaEvent<EntityDamageByEntityEvent> {
+
+    private val parametroChance = diContainer.config.getInt(NocauteConsts.CHANCE)
+    private val parametroMultiplicador = diContainer.config.getInt(NocauteConsts.MULTIPLICADOR_DE_DANO)
 
     @EventHandler(priority = EventPriority.NORMAL)
-    fun onNocaute(event: EntityDamageByEntityEvent) {
-
+    override fun on(event: EntityDamageByEntityEvent) {
         if (event.damager !is Player && event.entity !is Player) return
-        if ((event.entity as Player).equipment.helmet == null) return
 
-        val chance = diContainer.config.getInt(NocauteConsts.CHANCE)
-        val probabilidadeDeOcorrer = Random.nextInt(1, 100) <= chance
-
-        diContainer.debug("chance: $chance, resultado: $probabilidadeDeOcorrer")
+        val probabilidadeDeOcorrer = Random.nextInt(1, 100) <= parametroChance
 
         if (probabilidadeDeOcorrer) {
-
-            val player = event.entity as Player
-            player.damage(diContainer.config.getDouble(NocauteConsts.DANO))
-
+            event.damage = event.damage * parametroMultiplicador
         }
 
     }
